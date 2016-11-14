@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :horses, dependent: :destroy
   has_many :horse_bookings, through: :horses, source: :bookings
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
 end
