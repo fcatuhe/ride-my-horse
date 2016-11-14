@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  belongs_to :level
+  belongs_to :level, optional: true
   has_many :bookings
   has_many :horses, dependent: :destroy
   has_many :horse_bookings, through: :horses, source: :bookings
