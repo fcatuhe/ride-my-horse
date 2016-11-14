@@ -10,9 +10,89 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161114152910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "availabilities", force: :cascade do |t|
+    t.date     "start_at"
+    t.date     "finish_at"
+    t.integer  "horse_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["horse_id"], name: "index_availabilities_on_horse_id", using: :btree
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "horse_id"
+    t.date     "validated_at"
+    t.date     "date"
+    t.text     "owner_comment"
+    t.integer  "owner_rating"
+    t.text     "user_comment"
+    t.integer  "user_rating"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["horse_id"], name: "index_bookings_on_horse_id", using: :btree
+    t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "horses", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "price"
+    t.string   "address"
+    t.boolean  "equipment"
+    t.text     "description"
+    t.string   "photo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_horses_on_category_id", using: :btree
+    t.index ["user_id"], name: "index_horses_on_user_id", using: :btree
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "description"
+    t.string   "avatar"
+    t.integer  "level_id"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["level_id"], name: "index_users_on_level_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  add_foreign_key "availabilities", "horses"
+  add_foreign_key "bookings", "horses"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "horses", "categories"
+  add_foreign_key "horses", "users"
+  add_foreign_key "users", "levels"
 end
