@@ -1,6 +1,6 @@
 class Horse < ApplicationRecord
   belongs_to :user
-  has_one :category
+  belongs_to :category
   has_many :availabilities, dependent: :destroy
   has_many :bookings
   validates :name, presence: true
