@@ -12,13 +12,12 @@
 
     <div class="media-section">
       <h2>Description</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><%= @horse.category %></li>
+        <li class="list-group-item"><%= @horse.equipment %></li>
+        <li class="list-group-item"><%= @horse.price %></li>
+      </ul>
       <p><%= @horse.description %></p>
-    </div>
-
-    <div class="media-section">
-      <% if @horse.photo? %>
-        <%= cl_image_tag @horse.photo.path, width: 500, crop: :fill %>
-      <% end %>
     </div>
 
   </div>
@@ -27,13 +26,24 @@
 
     <div class="media-section">
       <h2>Ride me!</h2>
-      <p>add booking form here</p>
     </div>
 
     <div class="media-section">
       <h2><%= @horse.stars %></h2>
-      <p>add reviews here</p>
+      <p>add slogan here</p>
     </div>
+
+     <div class="media-section">
+      <% if @horse.photo? %>
+        <%= cl_image_tag @horse.photo.path, width: 500, crop: :fill %>
+      <% end %>
+    </div>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+        </div>
+      <button type="submit" class="btn btn-default">REQUEST</button>
+    </form>
 
   </div>
 
@@ -45,9 +55,8 @@
     <div class="thumbnail">
       <img src="..." alt="...">
       <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>This is just a lovely comment about my ride with this wonderful horse. I really appreciated my experience thank to "ride my horse"</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <h3>@user.name</h3>
+        <p>@user.name.review This is just a lovely comment about my ride with this wonderful horse. I really appreciated my experience thank to "ride my horse"</p>
       </div>
     </div>
   </div>
@@ -57,9 +66,8 @@
     <div class="thumbnail">
       <img src="..." alt="...">
       <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>This is just a lovely comment about my ride with this wonderful horse. I really appreciated my experience thank to "ride my horse"</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <h3>@user.name</h3>
+        <p>@user.name.review This is just a lovely comment about my ride with this wonderful horse. I really appreciated my experience thank to "ride my horse"</p>
       </div>
     </div>
   </div>
@@ -69,9 +77,8 @@
     <div class="thumbnail">
       <img src="..." alt="...">
       <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>This is just a lovely comment about my ride with this wonderful horse. I really appreciated my experience thank to "ride my horse"</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <h3>@user.name</h3>
+        <p>@user.name.review This is just a lovely comment about my ride with this wonderful horse. I really appreciated my experience thank to "ride my horse"</p>
       </div>
     </div>
   </div>
@@ -87,6 +94,7 @@
     <div class="media-section">
       <h2><%= @horse.address %></h2>
       <p></p>
+      <img src="http://www.cartesfrance.fr/cartes/carte_france_villes.gif" alt="...">
     </div>
 
   </div>
