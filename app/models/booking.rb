@@ -1,7 +1,5 @@
 class Booking < ApplicationRecord
-  belongs_to :user
-  belongs_to :horse
-  validates :user, presence: true
-  validates :horse, presence: true
+  belongs_to :user, required: true
+  belongs_to :horse, required: true
   validates :date, presence: true
 end
