@@ -1,1 +1,11 @@
-<%= f.input :photo, as: :attachinary %>
+<%= simple_form_for @horse do |f| %>
+  <%= f.input :name %>
+  <%= f.association :user %>
+  <%= f.association :category %>
+  <%= f.input :price %>
+  <%= f.input :address %>
+  <%= f.input :equipment %>
+  <%= f.input :description %>
+  <%= f.input :photo, as: :attachinary %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

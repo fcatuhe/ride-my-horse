@@ -40,7 +40,7 @@ end
     price: rand(15..100),
     address: Faker::Address.city,
     equipment: Faker::Boolean.boolean(0.4),
-    description: Faker::Hipster.sentences(1)
+    description: Faker::Hipster.sentence
     # photo: src= pic_path,
     })
   horse.user = User.all[rand(0..4)]
