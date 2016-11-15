@@ -1,0 +1,7 @@
+<div class="search_bar">
+  <%= simple_form_for :search, url: horses_path, method: :get do |f| %>
+    <%= f.input :address, placeholder: 'Where do you want to ride ?', label: false %>
+    <%= f.input :date, as: :date, label: false %>
+    <%= f.button :submit, class: "btn-block" %>
+  <% end %>
+</div>
