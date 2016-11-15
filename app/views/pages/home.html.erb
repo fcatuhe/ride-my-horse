@@ -2,22 +2,23 @@
 
 <div class="container">
 
-  <div class="row">
-    <% @horses.each do |horse| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(<%= cl_image_path_with_default(horse) %>);">
-          <div class="card-category"><%= horse.category.name %><br><%= horse.stars %></div>
-          <div class="card-description">
-            <h2><%= horse.name %></h2>
-            <p><%= "#{horse.description.first(50)}..." if horse.description && !horse.description.empty? %></p>
+  <div class="examples">
+    <div class="row">
+      <% @horses.each do |horse| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(<%= cl_image_path_with_default(horse) %>);">
+            <div class="card-category"><%= horse.category.name %><br><%= horse.stars %></div>
+            <div class="card-description">
+              <h2><%= horse.name %></h2>
+              <p><%= "#{horse.description.first(50)}..." if horse.description && !horse.description.empty? %></p>
+            </div>
+            <!-- <img class="card-user avatar" src="user.jpg"> -->
+            <%= link_to horse.name, horse, class: 'card-link' %>
           </div>
-          <!-- <img class="card-user avatar" src="user.jpg"> -->
-          <%= link_to horse.name, horse, class: 'card-link' %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-
 
 
   <div class="row">
@@ -51,6 +52,20 @@
         <img class="circle" src="http://placehold.it/100x100">
         <h4>Pay online...</h4>
         <p>... no cash issue</p>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'shared/mid_banner' %>
+
+  <div class="row">
+    <div class="padded">
+      <div class="text-center"><h3>They love to use Ride My Horse, read why ...</h3></div>
+    </div>
+    <div class="col-md-3">
+      <div class="floated">
+        <img class="circle" src="http://placehold.it/100x100">
+        <p>testimonials</p>
       </div>
     </div>
   </div>
