@@ -6,22 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+print "Destroying everything"
 Level.destroy_all
+Booking.destroy_all
+Horse.destroy_all
 Category.destroy_all
 User.destroy_all
-Horse.destroy_all
+puts "   💥"
 
 
+print "Creating levels"
 Level.create({ name: 'Beginner' })
 Level.create({ name: 'Intermediate' })
 Level.create({ name: 'Advanced' })
+puts "      💥"
 
+print "Creating categories"
 Category.create({ name: 'Horse' })
 Category.create({ name: 'Poney' })
 Category.create({ name: 'Double-poney' })
-
+puts "    💥"
 
 Faker::Config.locale = 'fr'
+
 
 15.times do
   user = User.new({
@@ -32,20 +39,21 @@ Faker::Config.locale = 'fr'
   user.save
 end
 
-
+print "Creating horse"
 30.times do
-  # pic_path = 'horse' + rand(1..10).to_s + '.jpg'
+  horsepath = "horse" + rand(1..11).to_s
   horse = Horse.new ({
     name: Faker::Pokemon.name,
     price: rand(15..100),
     address: Faker::Address.city,
     equipment: Faker::Boolean.boolean(0.4),
-    description: Faker::Hipster.sentence
-    # photo: src= pic_path,
-    })
+    description: Faker::Hipster.sentence,
+    photo_url: "http://res.cloudinary.com/fcatuhe/image/upload/v1479227624/#{horsepath}.jpg"
+  })
   horse.user = User.all[rand(0..14)]
   horse.category = Category.all[rand(0..2)]
   horse.save
+  print "🐎  "
 end
 
 50.times do
@@ -53,10 +61,13 @@ end
     owner_comment: Faker::ChuckNorris.fact,
     owner_rating: rand(1..5),
     user_comment: Faker::ChuckNorris.fact,
-    user_rating: rand(1..5)
+    user_rating: rand(1..5),
+    date: Faker::Date.forward(100)
     })
   booking.user = User.all[rand(0..14)]
   booking.horse = Horse.all[rand(0..29)]
   booking.save
 end
+
+puts "Seed done 😂"
 
