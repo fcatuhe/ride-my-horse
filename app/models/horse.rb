@@ -8,6 +8,7 @@ class Horse < ApplicationRecord
   validates :address, presence: true
   validates :equipment, presence: true
   validates :description, presence: true
+  has_attachment :photo
 
   def stars
     ratings = bookings.map { |booking| booking.owner_rating}.select { |owner_rating| !owner_rating.nil? }

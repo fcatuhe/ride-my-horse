@@ -6,9 +6,13 @@ gem 'puma'
 gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
-gem 'redis'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'cloudinary'
+gem "attachinary", github: "assembler/attachinary"
+gem "jquery-fileupload-rails"
+gem "coffee-rails"
+gem 'redis'
 
 gem 'sass-rails'
 gem 'jquery-rails'
