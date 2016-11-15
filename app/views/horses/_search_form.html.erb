@@ -1,0 +1,7 @@
+<%= simple_form_for :search, url: horses_path, method: :get do |f| %>
+  <%= f.input :address %>
+  <%= f.input :date, as: :date %>
+  <%= f.input :price %>
+  <%= f.input :equipment, as: :radio_buttons %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
