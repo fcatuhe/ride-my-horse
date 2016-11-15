@@ -34,17 +34,17 @@ end
 
 
 15.times do
-  pic_path = '../../app/assets/images/horses/horse' + rand(1..10).to_s + '.jpg'
+  # pic_path = 'horse' + rand(1..10).to_s + '.jpg'
   horse = Horse.new ({
     name: Faker::Pokemon.name,
     price: rand(15..100),
     address: Faker::Address.city,
     equipment: Faker::Boolean.boolean(0.4),
-    description: Faker::Hipster.sentences(1),
-    photo: src= pic_path,
+    description: Faker::Hipster.sentences(1)
+    # photo: src= pic_path,
     })
-  horse.user = User.find(rand(1..5))
-  horse.category = Category.find(rand(1..3))
+  horse.user = User.all[rand(0..4)]
+  horse.category = Category.all[rand(0..2)]
   horse.save
 end
 
