@@ -2,8 +2,39 @@
   <%= @horse.name %>
 <% end %>
 
-<div class="container">
+<div class="media">
 
-  <h1><%= @horse.name %></h1>
+  <div class="media-body">
+
+    <div class="media-section">
+      <h1><%= @horse.name %></h1>
+    </div>
+
+    <div class="media-section">
+      <h2>Description</h2>
+      <p><%= @horse.description %></p>
+    </div>
+
+    <div class="media-section">
+      <% if @horse.photo? %>
+        <%= cl_image_tag @horse.photo.path, width: 500, crop: :fill %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="media-aside">
+
+    <div class="media-section">
+      <h2>Ride me!</h2>
+      <p>add booking form here</p>
+    </div>
+
+    <div class="media-section">
+      <h2>add stars here</h2>
+      <p>add reviews here</p>
+    </div>
+
+  </div>
 
 </div>

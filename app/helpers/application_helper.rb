@@ -6,4 +6,12 @@ module ApplicationHelper
       default
     end
   end
+
+  def cl_image_path_with_default(horse)
+    if horse.photo?
+      cl_image_path cocktail.photo.path, height: 300, width: 400, crop: :fill
+    else
+      image_path 'ridemyhorse.gif'
+    end
+  end
 end

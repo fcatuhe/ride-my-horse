@@ -6,6 +6,15 @@
     <% @horses.each do |horse| %>
       <div class="col-xs-12 col-sm-4">
 
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(<%= cl_image_path_with_default(horse) %>);">
+          <div class="card-category"><%= horse.category.name %></div>
+          <div class="card-description">
+            <h2><%= horse.name %></h2>
+            <p><%= "#{horse.description.first(50)}..." if horse.description && !horse.description.empty? %></p>
+          </div>
+          <!-- <img class="card-user avatar" src="user.jpg"> -->
+          <%= link_to horse.name, horse, class: 'card-link' %>
+        </div>
 
       </div>
     <% end %>
