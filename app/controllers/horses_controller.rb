@@ -1,6 +1,6 @@
 class HorsesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :new, :create] # remove new and create when finished testing
-  before_action :set_horse, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_horse, only: [:show, :edit, :update, :destroy]
 
   def index
     search = params[:search]
@@ -12,8 +12,9 @@ class HorsesController < ApplicationController
 
     if params[:search].try(:[], "date(1i)")
       date = Date.new(search["date(1i)"].to_i, search["date(2i)"].to_i, search["date(3i)"].to_i)
-      # @horse.join(:availabilities).where('start_at <= ?', date).where('finish_at >= ?', date)
+      @horses = @horses.joins(:availabilities).where('start_at <= ?', date).where('finish_at >= ?', date)
     end
+
     @horses = Horse.all if @horses.nil?
   end
 
@@ -33,6 +34,23 @@ class HorsesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @horse.update(horse_params)
+    if @horse.save
+      redirect_to @horse
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @horse.destroy
+    redirect_to horses_path
+  end
+
   private
 
   def set_horse
@@ -40,6 +58,6 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:name, :user, :category, :price, :address, :equipment, :description, :photo)
+    params.require(:horse).permit(:name, :user_id, :category_id, :price, :address, :equipment, :description, :photo)
   end
 end
