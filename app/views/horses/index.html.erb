@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
-      Horses search bar here
+      <%= render 'search_form' %>
       <div class="row">
         <% @horses.each do |horse| %>
           <div class="col-xs-12 col-sm-6">
@@ -10,7 +10,7 @@
               <div class="card-category"><%= horse.category.name %><br><%= horse.stars %></div>
               <div class="card-description">
                 <h2><%= horse.name %></h2>
-                <p><%= "#{horse.description.first(50)}..." if horse.description && !horse.description.empty? %></p>
+                <p><%= "#{horse.description.first(50)}..." if horse.try(:description) %></p>
               </div>
               <!-- <img class="card-user avatar" src="user.jpg"> -->
               <%= link_to horse.name, horse, class: 'card-link' %>
