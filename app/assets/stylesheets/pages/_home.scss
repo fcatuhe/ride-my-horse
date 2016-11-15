@@ -32,3 +32,11 @@
 h3 {
   color: $brand-color
 }
+
+.wrapper {
+  background-color: $brand-color;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
