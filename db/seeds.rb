@@ -23,7 +23,7 @@ Category.create({ name: 'Double-poney' })
 
 Faker::Config.locale = 'fr'
 
-5.times do
+15.times do
   user = User.new({
     email: Faker::Internet.email,
     password: "123456"
@@ -33,7 +33,7 @@ Faker::Config.locale = 'fr'
 end
 
 
-15.times do
+30.times do
   # pic_path = 'horse' + rand(1..10).to_s + '.jpg'
   horse = Horse.new ({
     name: Faker::Pokemon.name,
@@ -43,9 +43,20 @@ end
     description: Faker::Hipster.sentence
     # photo: src= pic_path,
     })
-  horse.user = User.all[rand(0..4)]
+  horse.user = User.all[rand(0..14)]
   horse.category = Category.all[rand(0..2)]
   horse.save
 end
 
+50.times do
+  booking = Booking.new ({
+    owner_comment: Faker::ChuckNorris.fact,
+    owner_rating: rand(1..5),
+    user_comment: Faker::ChuckNorris.fact,
+    user_rating: rand(1..5)
+    })
+  booking.user = User.all[rand(0..14)]
+  booking.horse = Horse.all[rand(0..29)]
+  booking.save
+end
 
