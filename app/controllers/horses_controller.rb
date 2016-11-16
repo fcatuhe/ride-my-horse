@@ -8,7 +8,7 @@ class HorsesController < ApplicationController
     @horses = Horse.where.not(latitude: nil, longitude: nil)
 
     if search.try(:[], :address)
-      @horses = @horses.near(search[:address], 10)
+      @horses = @horses.near(search[:address], 500)
     end
 
     if search.try(:[], "date(1i)")

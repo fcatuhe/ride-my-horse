@@ -30,7 +30,7 @@ puts "    💥"
 Faker::Config.locale = 'fr'
 
 
-15.times do
+5.times do
   user = User.new({
     email: Faker::Internet.email,
     password: "123456"
@@ -40,23 +40,24 @@ Faker::Config.locale = 'fr'
 end
 
 print "Creating horse"
-30.times do
+10.times do
   horsepath = "horse" + rand(1..11).to_s
   horse = Horse.new ({
     name: Faker::Pokemon.name,
     price: rand(15..100),
-    address: Faker::Address.city,
+    address: "#{Faker::Address.city}, France",
     equipment: Faker::Boolean.boolean(0.4),
     description: Faker::Hipster.sentence,
     photo_url: "http://res.cloudinary.com/fcatuhe/image/upload/v1479227624/#{horsepath}.jpg"
   })
   horse.user = User.all[rand(0..14)]
   horse.category = Category.all[rand(0..2)]
+  horse.availabilities.new(start_at: Date.today - 1, finish_at: Date.today + rand(5..20))
   horse.save
   print "🐎  "
 end
 
-50.times do
+10.times do
   booking = Booking.new ({
     owner_comment: Faker::ChuckNorris.fact,
     owner_rating: rand(1..5),
