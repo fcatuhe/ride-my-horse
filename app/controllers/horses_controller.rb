@@ -9,7 +9,7 @@ class HorsesController < ApplicationController
 
     if search.try(:[], :address)
       @address = search[:address]
-      @horses = @horses.near(search[:address], 50)
+      @horses = @horses.near(search[:address], 100)
     end
 
     if search.try(:[], "date(1i)")
