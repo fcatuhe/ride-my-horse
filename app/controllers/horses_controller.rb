@@ -19,6 +19,9 @@ class HorsesController < ApplicationController
   end
 
   def show
+    @horse = Horse.find(params[:id])
+    @horse_coordinates = {lat: @horse.latitude, lng: @horse.longitude}
+    @alert_message = "You are viewing #{@horse.name}"
   end
 
   def new
