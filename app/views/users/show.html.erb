@@ -14,11 +14,15 @@
 
 
 <h3>Your horses</h3>
+<%= link_to "Add your cuttest horse", new_horse_path, class: 'btn' %>
 
 <% @user.horses.each do |horse| %>
   <h4><%= cl_image_tag_with_default horse %> <%= horse.name %> - <%= horse.price %> €</h4>
-  <h5>Availabilities</h5>
-  <%= link_to "Add availability", new_availability_path, class: 'btn' %>
+  <h4>Availabilities</h4>
+  <%= simple_form_for :available_horse, method: :get, url: new_availability_path do |f| %>
+    <%= f.input :horse, as: :hidden, input_html: {value: horse.id} %>
+    <%= f.submit "Add availability", class: 'btn btn-primary' %>
+  <% end %>
   <ul>
     <% horse.availabilities.each do |availability| %>
       <li>
@@ -28,4 +32,3 @@
   </ul>
 <% end %>
 
-<%= link_to "Add your cuttest horse", new_horse_path, class: 'btn' %>

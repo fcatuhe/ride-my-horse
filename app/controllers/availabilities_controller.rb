@@ -1,6 +1,7 @@
 class AvailabilitiesController < ApplicationController
   def new
-    @availability = Availability.new
+    horse = Horse.find(available_horse_params[:horse])
+    @availability = horse.availabilities.new
   end
 
   def create
@@ -15,5 +16,9 @@ class AvailabilitiesController < ApplicationController
   private
   def availability_params
     params.require(:availability).permit(:horse_id, :start_at, :finish_at)
+  end
+
+  def available_horse_params
+    params.require(:available_horse).permit!
   end
 end
