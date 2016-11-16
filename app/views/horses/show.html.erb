@@ -12,12 +12,13 @@
 
     <div class="media-section">
       <h2>Description</h2>
-      <ul class="list-group">
-        <li class="list-group-item"><%= @horse.category %></li>
-        <li class="list-group-item"><%= @horse.equipment %></li>
-        <li class="list-group-item"><%= @horse.price %></li>
-      </ul>
       <p><%= @horse.description %></p>
+      <br>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Price: <%= @horse.price %> €</strong></li>
+        <li class="list-group-item">Category: <%= @horse.category.name %></li>
+        <li class="list-group-item">Equiped: <%= @horse.equipment %></li>
+      </ul>
     </div>
 
   </div>
