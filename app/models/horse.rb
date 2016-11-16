@@ -8,6 +8,7 @@ class Horse < ApplicationRecord
   validates :address, presence: true
   validates :description, presence: true
   has_attachment :photo
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
