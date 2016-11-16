@@ -1,0 +1,12 @@
+<h2><%= @user.email %></h2>
+
+<% @user.horses.each do |horse| %>
+  <p><%= horse.name %> - <%= horse.price %></p>
+  <ul>
+    <% horse.availabilities.each do |availability| %>
+      <li>
+        <%= availability.start_at %> - <%= availability.finish_at %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

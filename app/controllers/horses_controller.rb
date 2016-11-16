@@ -7,10 +7,10 @@ class HorsesController < ApplicationController
 
     if search.try(:[], :address)
       @horses = Horse.where(address: search[:address])
-      # @horses = Horse.near(params[:search][:address], 10)
+      # @horses = Horse.near(search[:address], 10)
     end
 
-    if params[:search].try(:[], "date(1i)")
+    if search.try(:[], "date(1i)")
       date = Date.new(search["date(1i)"].to_i, search["date(2i)"].to_i, search["date(3i)"].to_i)
       @horses = @horses.joins(:availabilities).where('start_at <= ?', date).where('finish_at >= ?', date)
     end
