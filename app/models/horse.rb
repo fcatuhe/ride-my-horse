@@ -9,6 +9,9 @@ class Horse < ApplicationRecord
   validates :description, presence: true
   has_attachment :photo
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   def stars
     ratings = bookings.map { |booking| booking.owner_rating}.select { |owner_rating| !owner_rating.nil? }
     rating = ratings.size > 0 ? ratings.sum.fdiv(ratings.size).round : 0
