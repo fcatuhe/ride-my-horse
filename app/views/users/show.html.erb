@@ -1,7 +1,22 @@
 <div class="container">
 
   <h2><%= image_tag @user.facebook_picture_url, class: 'avatar avatar-large' %> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h2>
-  <p><%= @user.email %></p>
+
+  <div class="tabs">
+    <a class="tab active" href="bookings">
+      <h3>Your bookings</h3>
+      <p>x planned</p>
+    </a>
+    <a class="tab" href="horses">
+      <h3>Yours horses</h3>
+      <p>y proposed</p>
+    </a>
+    <a class="tab" href="profile">
+      <h3>Your profile</h3>
+      <p>?</p>
+    </a>
+  </div>
+
 
   <h3>Your bookings</h3>
 
