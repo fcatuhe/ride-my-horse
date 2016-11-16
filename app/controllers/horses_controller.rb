@@ -8,12 +8,13 @@ class HorsesController < ApplicationController
     @horses = Horse.where.not(latitude: nil, longitude: nil)
 
     if search.try(:[], :address)
+      @address = search[:address]
       @horses = @horses.near(search[:address], 50)
     end
 
     if search.try(:[], "date(1i)")
-      date = Date.new(search["date(1i)"].to_i, search["date(2i)"].to_i, search["date(3i)"].to_i)
-      @horses = @horses.joins(:availabilities).where('start_at <= ?', date).where('finish_at >= ?', date)
+      @date = Date.new(search["date(1i)"].to_i, search["date(2i)"].to_i, search["date(3i)"].to_i)
+      @horses = @horses.joins(:availabilities).where('start_at <= ?', @date).where('finish_at >= ?', @date)
     end
 
     @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
