@@ -1,4 +1,6 @@
-<%= simple_form_for [@horse, @booking] do |f| %>
+<%= @booking.inspect %>
+<%= simple_form_for @booking do |f| %>
+  <%= f.association :horse, as: :hidden %>
   <%= f.input :date %>
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>

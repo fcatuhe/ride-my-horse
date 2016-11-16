@@ -1,14 +1,15 @@
 class BookingsController < ApplicationController
 
+  def index
+    @bookings = Booking.all
+  end
+
   def create
-    @horse = Horse.find(params[:horse_id])
-    raise
-    @booking = @horse.bookings.new(booking_params)
-
-    if booking.save
-      redirect_to @horse
-
+    @booking = current_user.bookings.new(booking_params)
+    if @booking.save
+      redirect_to @booking.user
     else
+      @horse = @booking.horse
       render 'horses/show'
     end
   end
@@ -22,7 +23,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:user_id, :horse_id, :date)
+    params.require(:booking).permit(:horse_id, :date)
   end
 
 end
