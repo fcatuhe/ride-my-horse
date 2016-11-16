@@ -14,4 +14,13 @@ module ApplicationHelper
       image_path 'ridemyhorse.gif'
     end
   end
+
+  def cl_image_tag_with_default(horse)
+    if horse.photo?
+      cl_image_tag horse.photo.path, height: 300, width: 400, crop: :fill
+    else
+      image_tag 'ridemyhorse.gif'
+    end
+  end
+
 end

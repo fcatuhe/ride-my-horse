@@ -34,9 +34,9 @@ class HorsesController < ApplicationController
   end
 
   def create
-    @horse = Horse.new(horse_params)
+    @horse = current_user.horses.new(horse_params)
     if @horse.save
-      redirect_to @horse
+      redirect_to @horse.user
     else
       render :new
     end
@@ -66,6 +66,6 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:name, :user_id, :category_id, :price, :address, :equipment, :description, :photo)
+    params.require(:horse).permit(:name, :category_id, :price, :address, :equipment, :description, :photo)
   end
 end

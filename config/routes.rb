@@ -6,10 +6,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :horses, only: [:index, :show]
+  resources :horses
 
   resources :users, only: [:show] do
-    resources :horses
   end
 
 end
