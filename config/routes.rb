@@ -6,12 +6,11 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :horses, only: [:index, :show] do
+  resources :horses do
     resources :bookings, shallow: true
   end
 
   resources :users, only: [:show] do
-    resources :horses
   end
 
 end

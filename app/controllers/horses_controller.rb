@@ -5,9 +5,10 @@ class HorsesController < ApplicationController
   def index
     search = params[:search]
 
+    @horses = Horse.where.not(latitude: nil, longitude: nil)
+
     if search.try(:[], :address)
-      @horses = Horse.where(address: search[:address])
-      # @horses = Horse.near(search[:address], 10)
+      @horses = @horses.near(search[:address], 10)
     end
 
     if search.try(:[], "date(1i)")
@@ -15,11 +16,18 @@ class HorsesController < ApplicationController
       @horses = @horses.joins(:availabilities).where('start_at <= ?', date).where('finish_at >= ?', date)
     end
 
-    @horses = Horse.all if @horses.nil?
+    @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
+      marker.lat horse.latitude
+      marker.lng horse.longitude
+    end
+
   end
 
   def show
     @booking = Booking.new
+    @horse = Horse.find(params[:id])
+    @horse_coordinates = {lat: @horse.latitude, lng: @horse.longitude}
+    @alert_message = "You are viewing #{@horse.name}"
   end
 
   def new
@@ -27,9 +35,9 @@ class HorsesController < ApplicationController
   end
 
   def create
-    @horse = Horse.new(horse_params)
+    @horse = current_user.horses.new(horse_params)
     if @horse.save
-      redirect_to @horse
+      redirect_to @horse.user
     else
       render :new
     end
@@ -59,6 +67,6 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:name, :user_id, :category_id, :price, :address, :equipment, :description, :photo)
+    params.require(:horse).permit(:name, :category_id, :price, :address, :equipment, :description, :photo)
   end
 end
