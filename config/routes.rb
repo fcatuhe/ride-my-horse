@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   resources :bookings
 
+  resources :availabilities, only: [:new, :create]
+
 end

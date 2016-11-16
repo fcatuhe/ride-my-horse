@@ -1,11 +1,24 @@
 <h2><%= image_tag @user.facebook_picture_url, class: 'avatar avatar-large' %> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h2>
 <p><%= @user.email %></p>
 
+<h3>Your bookings</h3>
+
+<ul>
+  <% @user.bookings.each do |booking| %>
+    <li>
+      <%= cl_image_tag_with_default booking.horse %>
+      <%= link_to booking.horse.name, booking.horse %> - <%= booking.date %> - <%= booking.horse.price %> €
+    </li>
+  <% end %>
+</ul>
+
+
 <h3>Your horses</h3>
 
 <% @user.horses.each do |horse| %>
   <h4><%= cl_image_tag_with_default horse %> <%= horse.name %> - <%= horse.price %> €</h4>
   <h5>Availabilities</h5>
+  <%= link_to "Add availability", new_availability_path, class: 'btn' %>
   <ul>
     <% horse.availabilities.each do |availability| %>
       <li>
