@@ -1,0 +1,18 @@
+.signin-fb-btn {
+  background-color: $brand-color;
+  color: white !important;
+  font-size: 16px;
+  border: 2px solid $brand-color;
+  margin-top: 50px;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border-radius: 20em;
+  line-height: 40px !important;
+}
+
+.signin-fb-btn:hover {
+  color: white;
+  background: #D23333;
+  border-color: #ac2626;
+  text-decoration: none;
+}
