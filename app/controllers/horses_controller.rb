@@ -22,13 +22,11 @@ class HorsesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
     @horse = Horse.new
   end
 
   def create
-    @horse = Horse.new(horse_params)
-    @horse.user = User.find(params[:user_id])
+    @horse = current_user.horses.new(horse_params)
     if @horse.save
       redirect_to @horse.user
     else
