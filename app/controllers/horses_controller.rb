@@ -8,7 +8,7 @@ class HorsesController < ApplicationController
     @horses = Horse.where.not(latitude: nil, longitude: nil)
 
     if search.try(:[], :address)
-      @horses = @horses.near(search[:address], 500)
+      @horses = @horses.near(search[:address], 50)
     end
 
     if search.try(:[], "date(1i)")
@@ -24,8 +24,8 @@ class HorsesController < ApplicationController
   end
 
   def show
-    @booking = Booking.new
     @horse = Horse.find(params[:id])
+    @booking = @horse.bookings.new
     @horse_coordinates = {lat: @horse.latitude, lng: @horse.longitude}
     @alert_message = "You are viewing #{@horse.name}"
   end

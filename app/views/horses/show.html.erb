@@ -38,10 +38,7 @@
         <%= cl_image_tag @horse.photo.path, width: 500, crop: :fill %>
       <% end %>
     </div>
-    <form class="navbar-form navbar-left" role="search">
-      <%= render 'bookings/form' %>
-    </form>
-
+    <%= render 'bookings/form' %>
   </div>
 
 </div>
