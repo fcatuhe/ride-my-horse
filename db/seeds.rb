@@ -50,7 +50,7 @@ print "Creating horse"
     description: Faker::Hipster.sentence,
     photo_url: "http://res.cloudinary.com/fcatuhe/image/upload/v1479227624/#{horsepath}.jpg"
   })
-  horse.user = User.all[rand(0..14)]
+  horse.user = User.all[rand(0..4)]
   horse.category = Category.all[rand(0..2)]
   horse.availabilities.new(start_at: Date.today - 1, finish_at: Date.today + rand(5..20))
   horse.save
@@ -65,8 +65,8 @@ end
     user_rating: rand(1..5),
     date: Faker::Date.forward(100)
     })
-  booking.user = User.all[rand(0..14)]
-  booking.horse = Horse.all[rand(0..29)]
+  booking.user = User.all[rand(0..4)]
+  booking.horse = Horse.all[rand(0..9)]
   booking.save
 end
 
