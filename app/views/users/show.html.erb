@@ -1,34 +1,41 @@
-<h2><%= image_tag @user.facebook_picture_url, class: 'avatar avatar-large' %> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h2>
-<p><%= @user.email %></p>
+<div class="container">
+  <div class="user-info">
+    <h2><%= image_tag @user.facebook_picture_url, class: 'avatar avatar-large' %> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h2>
+    <p><%= @user.email %></p>
+  </div>
 
-<h3>Your bookings</h3>
+  <div class="user-bookings">
+    <h3>Your bookings</h3>
 
-<ul>
-  <% @user.bookings.each do |booking| %>
-    <li>
-      <%= cl_image_tag_with_default booking.horse %>
-      <%= link_to booking.horse.name, booking.horse %> - <%= booking.date %> - <%= booking.horse.price %> €
-    </li>
-  <% end %>
-</ul>
+    <ul>
+      <% @user.bookings.each do |booking| %>
+        <li>
+          <%= cl_image_tag_with_default booking.horse %>
+          <%= link_to booking.horse.name, booking.horse %> - <%= booking.date %> - <%= booking.horse.price %> €
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
+  <div class="user-horses">
+    <h3>Your horses</h3>
+    <%= link_to "Add your cuttest horse", new_horse_path, class: 'btn' %>
 
-<h3>Your horses</h3>
-<%= link_to "Add your cuttest horse", new_horse_path, class: 'btn' %>
-
-<% @user.horses.each do |horse| %>
-  <h4><%= cl_image_tag_with_default horse %> <%= horse.name %> - <%= horse.price %> €</h4>
-  <h4>Availabilities</h4>
-  <%= simple_form_for :available_horse, method: :get, url: new_availability_path do |f| %>
-    <%= f.input :horse, as: :hidden, input_html: {value: horse.id} %>
-    <%= f.submit "Add availability", class: 'btn btn-primary' %>
-  <% end %>
-  <ul>
-    <% horse.availabilities.each do |availability| %>
-      <li>
-        <%= availability.start_at %> - <%= availability.finish_at %>
-      </li>
+    <% @user.horses.each do |horse| %>
+      <h4><%= cl_image_tag_with_default horse %> <%= horse.name %> - <%= horse.price %> €</h4>
+      <h4>Availabilities</h4>
+      <%= simple_form_for :available_horse, method: :get, url: new_availability_path do |f| %>
+        <%= f.input :horse, as: :hidden, input_html: {value: horse.id} %>
+        <%= f.submit "Add availability", class: 'btn btn-primary' %>
+      <% end %>
+      <ul>
+        <% horse.availabilities.each do |availability| %>
+          <li>
+            <%= availability.start_at %> - <%= availability.finish_at %>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
+</div>
