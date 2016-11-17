@@ -1,0 +1,45 @@
+<% content_for :title do %>
+  <%= @booking.horse.name %> boarding pass
+<% end %>
+
+<div class="container">
+  <div class="frame text-center">
+    <div class="row">
+      <h1>Boarding pass
+        <% if @booking.validated_at %>
+           - confirmed
+        <% else %>
+           - waiting confirmation
+        <% end %>
+      </h1>
+
+      <div class="col-sm-4">
+        <h2>Rider</h2>
+        <% rider_avatar_url = @booking.user.facebook_picture_url || "http://placehold.it/30x30"  %>
+        <%= image_tag rider_avatar_url, class: 'avatar-xl' %>
+        <h3><%= @booking.user.first_name %> <%= @booking.user.last_name %></h3>
+        <p><%= @booking.user.level.try(:name) %></p>
+        <p><%= @booking.user.stars %> on <%= @booking.user.past_bookings_count %> bookings</p>
+        <p><%= @booking.user.try(:address) %></p>
+      </div>
+
+      <div class="col-sm-4">
+        <h3><%= @booking.horse.name %></h3>
+        <h4><%= @booking.date.strftime('%d %B %Y') %></h4>
+        <%= cl_image_tag_with_default(@booking.horse, height: 300, width: 400, crop: :fill, style: 'border-radius: 10px; width: 100%; object-fit: cover;') %>
+      </div>
+
+      <div class="col-sm-4">
+        <h2>Owner</h2>
+        <% owner_avatar_url = @booking.horse.user.facebook_picture_url || "http://placehold.it/30x30"  %>
+        <%= image_tag owner_avatar_url, class: 'avatar-xl' %>
+        <h3><%= @booking.horse.user.first_name %> <%= @booking.horse.user.last_name %></h3>
+        <p><%= @booking.horse.user.level.try(:name) %></p>
+        <p><%= @booking.horse.stars %> on <%= @booking.horse.past_bookings_count %> bookings</p>
+        <p><%= @booking.horse.try(:address) %></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,85 @@
+<% content_for :title do %>
+  <%= @user.first_name %> <%= @user.last_name %>
+<% end %>
+
+<div class="profile-header-wrapper">
+  <div class="container profile-header-container text-center">
+    <div class="profile-header-infos">
+      <%= image_tag @user.facebook_picture_url %>
+      <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+      <h2><%= @user.level.try(:name) %></h2>
+    </div>
+    <div class="tabs">
+      <a class="tab active" data-target="#bookings">
+        <h3>My bookings</h3>
+      </a>
+      <a class="tab" data-target="#horses">
+        <h3>My horses</h3>
+      </a>
+      <a class="tab" data-target="#contact">
+        <h3>My profile</h3>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container text-center">
+  <div class="tab-content" id="bookings">
+
+    <h4>Confirmed</h4>
+
+    <% @user.bookings.where('validated_at IS NOT NULL').each do |booking| %>
+      <%= render 'bookings/list_item', booking: booking %>
+    <% end %>
+
+    <h4>Waiting confirmation</h4>
+
+    <% @user.bookings.where('validated_at IS NULL').each do |booking| %>
+      <%= render 'bookings/list_item', booking: booking %>
+    <% end %>
+
+
+  </div>
+
+  <div class="tab-content hidden" id="horses">
+
+    <% @user.horses.each do |horse| %>
+
+      <div class="product">
+        <div class='product-upvote'>
+          <div class="product-arrow"></div>
+          <div class='product-count'>95</div>
+        </div>
+        <%= cl_image_tag_with_default horse, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
+        <div class='product-body'>
+          <h3><%= horse.name %></h3>
+          <p><%= horse.address %> - <strong><%= horse.price %> € / day</strong> - equipped: <%= horse.equipment %></p>
+          <h5>Availabilities: </h5>
+            <% horse.availabilities.each do |availability| %>
+              <p>
+                <%= availability.start_at %> - <%= availability.finish_at %>
+              </p>
+            <% end %>
+            <%= simple_form_for :available_horse, method: :get, url: new_availability_path do |f| %>
+              <%= f.input :horse, as: :hidden, input_html: {value: horse.id} %>
+              <%= f.submit "Add availability", class: 'btn btn-primary' %>
+            <% end %>
+        </div>
+        <ul class="list-inline product-controls hidden-sm hidden-xs">
+          <li><a href=""><i class="fa fa-heart"></i></a></li>
+          <li><a href=""><i class="fa fa-share"></i></a></li>
+          <li><a href=""><i class="fa fa-star"></i></a></li>
+        </ul>
+      </div>
+
+
+    <% end %>
+
+    <%= link_to "Add your cuttest horse", new_horse_path, class: 'btn' %>
+
+  </div>
+
+  <div class="tab-content hidden" id="contact">
+    <p>Contact me if you want.</p>
+  </div>
+</div>
