@@ -11,8 +11,3 @@ $(function(){
   });
 
 });
-
-// $(document).ready(function () {
-//   $(".tab").data("temperature"); // => "24"
-//   $(".example").data("message"); // => "hello"
-// });

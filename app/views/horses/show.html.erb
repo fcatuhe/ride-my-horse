@@ -57,8 +57,8 @@
 
     </div>
 
-    <div class="media-section">
-      <h4><%= @horse.price %> € makes your day!</h4>
+    <div class="media-section text-center">
+      <h4><%= @horse.price %> € make your day!</h4>
       <h5>Available:</h5>
       <% @horse.availabilities.each do |availability| %>
         <p><%= availability.start_at.strftime('%d %B %Y') %> - <%= availability.finish_at.strftime('%d %B %Y') %></p>
@@ -66,8 +66,11 @@
       <%= render 'bookings/form' %>
     </div>
 
-    <div class="media-section">
-      <h2><%= @horse.stars %></h2>
+    <div class="media-section text-center">
+      <div class="media-rating">
+        <h2><%= @horse.stars %></h2>
+        <p>on <%= @horse.past_bookings_count %> bookings</p>
+      </div>
     </div>
 
 

@@ -22,7 +22,8 @@
         <h3><%= @booking.user.first_name %> <%= @booking.user.last_name %></h3>
         <p><%= @booking.user.level.try(:name) %></p>
         <p><%= @booking.user.stars %> on <%= @booking.user.past_bookings_count %> bookings</p>
-        <p><%= @booking.user.try(:address) %></p>
+        <p><small><%= @booking.user.try(:address) %></small></p>
+        <p><%= @booking.user&.description %></p>
       </div>
 
       <div class="col-sm-4">
@@ -37,8 +38,9 @@
         <%= image_tag owner_avatar_url, class: 'avatar-xl' %>
         <h3><%= @booking.horse.user.first_name %> <%= @booking.horse.user.last_name %></h3>
         <p><%= @booking.horse.user.level.try(:name) %></p>
-        <p><%= @booking.horse.stars %> on <%= @booking.horse.past_bookings_count %> bookings</p>
-        <p><%= @booking.horse.try(:address) %></p>
+        <p>Last seen on <%= @booking.horse.user.last_sign_in_at.strftime('%d %B %Y') %></p>
+        <p><small><%= @booking.horse.try(:address) %></small></p>
+        <p><%= @booking.horse.user&.description %></p>
 
         <% if !@booking.validated_at && @booking.horse.user == current_user %>
           <%= simple_form_for @booking do |f| %>
