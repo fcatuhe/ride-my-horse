@@ -119,7 +119,7 @@
     <div class="my-profile">
       <%= @user.first_name %>
       <%= @user.last_name %>
-      <p>My level: <%= @user.level.name %></p>
+      <p>My level: <%= @user.level&.name %></p>
       <p>About me: <%= @user.description %></p>
     </div>
 
