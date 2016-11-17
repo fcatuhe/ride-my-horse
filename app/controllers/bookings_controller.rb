@@ -1,7 +1,10 @@
 class BookingsController < ApplicationController
-
+  before_action :set_booking, only: [:show, :destroy]
   def index
     @bookings = Booking.all
+  end
+
+  def show
   end
 
   def create
@@ -15,7 +18,6 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking = Booking.find(params[:id])
     @booking.destroy
     render 'horses/show'
   end
@@ -26,4 +28,7 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:horse_id, :date)
   end
 
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 end
