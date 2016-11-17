@@ -67,7 +67,7 @@
     <div class="media-section">
       <% @horse.bookings.each do |booking| %>
         <% if booking.user_rating %>
-          <p><%= booking.stars %> <%= booking.user_comment %> <%= raw " - <strong>#{booking.user.try(:first_name)} #{booking.user.try(:last_name)}.</strong>" if booking.user.try(:first_name) %></p>
+          <p><%= booking.stars %> <%= booking.user_comment %> <%= raw " - <strong>#{booking.user.try(:first_name)} #{booking.user&.last_name.try(:[], 0)}.</strong>" if booking.user.try(:first_name) %></p>
         <% end %>
       <% end %>
     </div>
