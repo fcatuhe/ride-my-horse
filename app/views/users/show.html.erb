@@ -33,7 +33,7 @@
         </div>
 
         <!-- <%= cl_image_tag_with_default booking.horse %> -->
-        <%= image_tag 'ridemyhorse.gif', alt: 'ride-my-horse', class: "product-image hidden-xs" %>
+        <%= cl_image_tag booking.horse.photo.path, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
 
         <div class='product-body'>
           <h3><%= booking.horse.name %></h3>
@@ -59,7 +59,7 @@
         </div>
 
         <!-- <%= cl_image_tag_with_default booking.horse %> -->
-        <%= image_tag 'ridemyhorse.gif', alt: 'ride-my-horse', class: "product-image hidden-xs" %>
+        <%= cl_image_tag booking.horse.photo.path, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
 
         <div class='product-body'>
           <h3><%= booking.horse.name %></h3>
@@ -88,7 +88,7 @@
         </div>
 
         <!-- <%= cl_image_tag_with_default horse %> -->
-        <%= image_tag 'ridemyhorse.gif', alt: 'ride-my-horse', class: "product-image hidden-xs" %>
+        <%= cl_image_tag horse.photo.try(:path), alt: 'ride-my-horse', class: "product-image hidden-xs" %>
 
         <div class='product-body'>
           <h3><%= horse.name %></h3>
