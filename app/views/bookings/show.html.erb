@@ -37,6 +37,12 @@
         <p><%= @booking.horse.user.level.try(:name) %></p>
         <p><%= @booking.horse.stars %> on <%= @booking.horse.past_bookings_count %> bookings</p>
         <p><%= @booking.horse.try(:address) %></p>
+
+        <%= simple_form_for @booking do |f| %>
+          <%= f.hidden_field :validated_at, value: Date.today %>
+          <%= f.button :submit, "Confirm booking", class: 'btn btn-primary' %>
+        <% end %>
+
       </div>
 
     </div>

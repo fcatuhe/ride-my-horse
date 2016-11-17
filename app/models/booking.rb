@@ -20,7 +20,7 @@ class Booking < ApplicationRecord
   end
 
   def send_booking_confirmed
-    UserMailer.booking_confirmed(self).deliver_now if booking.validated_at != nil
+    UserMailer.booking_confirmed(self).deliver_now if self.validated_at != nil
   end
 
 end
