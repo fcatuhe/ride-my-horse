@@ -1,3 +1,10 @@
+a.product-inherit {
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .product {
   display: flex;
   align-items: center;

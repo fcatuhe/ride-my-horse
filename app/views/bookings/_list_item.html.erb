@@ -1,16 +1,34 @@
-<div class="product">
-  <div class='product-upvote'>
-    <div class="product-arrow"></div>
-    <div class='product-count'>95</div>
+<%= link_to booking, class: 'product-inherit' do %>
+  <div class="product" data-booking-id="#<%= booking.id %>">
+    <%= cl_image_tag_with_default booking.horse, alt: booking.horse.name, class: "product-image hidden-xs" %>
+    <div class='product-body'>
+      <h3 class="product-inherit"><%= booking.horse.name %></h3>
+      <h5 class="product-inherit"><%= booking.horse.address %> - <strong><%= booking.date.strftime('%d %B %Y') %></strong> - <%= booking.horse.price %> €</h5>
+    </div>
+    <ul class="list-inline product-controls hidden-sm hidden-xs">
+      <li>
+        <object>
+          <%= link_to booking do %>
+            <i class="fa fa-heart"></i>
+          <% end %>
+        </object>
+      </li>
+
+      <li>
+        <object>
+          <a href="">
+            <i class="fa fa-share"></i>
+          </a>
+        </object>
+      </li>
+
+      <li>
+        <object>
+          <a href="">
+            <i class="fa fa-star"></i>
+          </a>
+        </object>
+      </li>
+    </ul>
   </div>
-  <%= cl_image_tag_with_default booking.horse, alt: booking.horse.name, class: "product-image hidden-xs" %>
-  <div class='product-body'>
-    <h3><%= booking.horse.name %></h3>
-    <h5><%= booking.horse.address %> - <strong><%= booking.date.strftime('%d %B %Y') %></strong> - <%= booking.horse.price %> €</h5>
-  </div>
-  <ul class="list-inline product-controls hidden-sm hidden-xs">
-    <li><a href=""><i class="fa fa-heart"></i></a></li>
-    <li><a href=""><i class="fa fa-share"></i></a></li>
-    <li><a href=""><i class="fa fa-star"></i></a></li>
-  </ul>
-</div>
+<% end %>
