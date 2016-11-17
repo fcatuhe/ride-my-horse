@@ -31,10 +31,7 @@
           <div class="product-arrow"></div>
           <div class='product-count'>95</div>
         </div>
-
-        <!-- <%= cl_image_tag_with_default booking.horse %> -->
-        <%= cl_image_tag booking.horse.photo.path, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
-
+        <%= cl_image_tag_with_default booking.horse, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
         <div class='product-body'>
           <h3><%= booking.horse.name %></h3>
           <p><%= booking.date %> - <%= booking.horse.price %> €</p>
@@ -57,10 +54,7 @@
           <div class="product-arrow"></div>
           <div class='product-count'>95</div>
         </div>
-
-        <!-- <%= cl_image_tag_with_default booking.horse %> -->
-        <%= cl_image_tag booking.horse.photo.path, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
-
+        <%= cl_image_tag_with_default booking.horse, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
         <div class='product-body'>
           <h3><%= booking.horse.name %></h3>
           <p><%= booking.date %> - <%= booking.horse.price %> €</p>
@@ -86,10 +80,7 @@
           <div class="product-arrow"></div>
           <div class='product-count'>95</div>
         </div>
-
-        <!-- <%= cl_image_tag_with_default horse %> -->
-        <%= cl_image_tag horse.photo.try(:path), alt: 'ride-my-horse', class: "product-image hidden-xs" %>
-
+        <%= cl_image_tag_with_default horse, alt: 'ride-my-horse', class: "product-image hidden-xs" %>
         <div class='product-body'>
           <h3><%= horse.name %></h3>
           <p><%= horse.price %> € / day - equipped: <%= horse.equipment %> €</p>
