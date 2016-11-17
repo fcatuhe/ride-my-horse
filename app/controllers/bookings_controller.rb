@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :destroy]
+  before_action :set_booking, only: [:show, :destroy, :edit, :update]
+
   def index
     @bookings = Booking.all
   end
@@ -17,6 +18,14 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @booking.update(booking_params)
+    redirect_to current_user
+  end
+
   def destroy
     @booking.destroy
     render 'horses/show'
@@ -25,7 +34,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:horse_id, :date)
+    params.require(:booking).permit(:horse_id, :date, :validated_at)
   end
 
   def set_booking
