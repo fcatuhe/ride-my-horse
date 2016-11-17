@@ -8,8 +8,9 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= favicon_link_tag 'logo.jpg' %>
   </head>
-  <body>
+  <body class="Site">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
@@ -19,6 +20,7 @@
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js) %>
     <%= cloudinary_js_config %>
+    <main class="Site-content"></main>
     <%= render 'shared/footer' %>
   </body>
 </html>
