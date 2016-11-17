@@ -3,7 +3,9 @@
   <%= @booking.horse.user.email %>, confirmed the booking of <%= @booking.horse.name %> on <%= @booking.date %>
 </p>
 
-<%= cl_image_tag @booking.horse.photo.path, style: "height:200px; border-radius:15px" %>
+<% if @booking.horse.photo? %>
+  <%= cl_image_tag @booking.horse.photo.path, style: "height:200px; border-radius:15px" %>
+<% end %>
 
 <p>Enjoy your ride !</p>
 
