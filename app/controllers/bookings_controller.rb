@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   def create
     @booking = current_user.bookings.new(booking_params)
     if @booking.save
-      redirect_to @booking.user
+      redirect_to current_user
     else
       @horse = @booking.horse
       render 'horses/show'
@@ -23,7 +23,11 @@ class BookingsController < ApplicationController
 
   def update
     @booking.update(booking_params)
-    redirect_to current_user
+    if @booking.save
+      redirect_to current_user
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -34,7 +38,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:horse_id, :date, :validated_at)
+    params.require(:booking).permit(:horse_id, :date, :validated_at, :user_rating, :user_comment, :owner_rating, :owner_comment)
   end
 
   def set_booking

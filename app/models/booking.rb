@@ -13,6 +13,10 @@ class Booking < ApplicationRecord
     ('<i class="fa fa-star" aria-hidden="true"></i>' * user_rating + '<i class="fa fa-star-o" aria-hidden="true"></i>' * (5 - user_rating)).html_safe if user_rating
   end
 
+  def owner_stars
+    ('<i class="fa fa-star" aria-hidden="true"></i>' * owner_rating + '<i class="fa fa-star-o" aria-hidden="true"></i>' * (5 - owner_rating)).html_safe if owner_rating
+  end
+
   private
 
   def send_confirm_booking

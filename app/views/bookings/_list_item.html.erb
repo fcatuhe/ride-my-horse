@@ -6,27 +6,18 @@
       <h5 class="product-inherit"><%= booking.horse.address %> - <strong><%= booking.date.strftime('%d %B %Y') %></strong> - <%= booking.horse.price %> €</h5>
     </div>
     <ul class="list-inline product-controls hidden-sm hidden-xs">
+
       <li>
         <object>
-          <%= link_to booking do %>
-            <i class="fa fa-heart"></i>
+          <% if booking.user == current_user && booking.user_rating? %>
+            <span class='btn btn-success'><%= booking.stars %><%= " Great experience !" if booking.user_rating > 3 %></span>
+          <% elsif booking.user == current_user && booking.validated_at? %>
+            <%= link_to "Rate your experience", edit_booking_path(booking), class: 'btn btn-primary' %>
+          <% elsif booking.horse.user == current_user && booking.owner_rating? %>
+            <span class='btn btn-success'><%= booking.owner_stars %><%= " Great experience !" if booking.owner_rating > 3 %></span>
+          <% elsif booking.horse.user == current_user && booking.validated_at? %>
+            <%= link_to "Rate the rider", edit_booking_path(booking), class: 'btn btn-primary' %>
           <% end %>
-        </object>
-      </li>
-
-      <li>
-        <object>
-          <a href="">
-            <i class="fa fa-share"></i>
-          </a>
-        </object>
-      </li>
-
-      <li>
-        <object>
-          <a href="">
-            <i class="fa fa-star"></i>
-          </a>
         </object>
       </li>
     </ul>

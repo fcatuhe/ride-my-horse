@@ -10,7 +10,9 @@
   Please confirm <%= link_to 'the booking', booking_url(@booking) %>
 </p>
 
-<%= cl_image_tag @booking.horse.photo.path, style: "height:200px; border-radius:15px" %>
+<% if @booking.horse.photo? %>
+  <%= cl_image_tag @booking.horse.photo.path, style: "height:200px; border-radius:15px" %>
+<% end %>
 
 <p>See You Soon !</p>
 
