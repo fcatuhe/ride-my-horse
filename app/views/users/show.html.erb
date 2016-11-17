@@ -116,6 +116,36 @@
   </div>
 
   <div class="tab-content hidden" id="contact">
-    <p>Contact me if you want.</p>
+    <div class="my-profile">
+      <%= @user.first_name %>
+      <%= @user.last_name %>
+      <p>My level: <%= @user.level.name %></p>
+      <p>About me: <%= @user.description %></p>
+    </div>
+
+    <p>Contact me if you want: <%= @user.email %></p>
+
+    <div class="change-profile">
+      <p>Edit my profile </p>
+        <i class="fa fa-pencil" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" ></i>
+      <div class="collapse" id="collapseExample">
+        <div class="well">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+
   </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
