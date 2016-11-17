@@ -59,6 +59,10 @@
 
     <div class="media-section">
       <h4><%= @horse.price %> € makes your day!</h4>
+      <h5>Available:</h5>
+      <% @horse.availabilities.each do |availability| %>
+        <p><%= availability.start_at.strftime('%d %B %Y') %> - <%= availability.finish_at.strftime('%d %B %Y') %></p>
+      <% end %>
       <%= render 'bookings/form' %>
     </div>
 

@@ -8,7 +8,7 @@
         <% avatar_url = @user.facebook_picture_url || "http://placehold.it/30x30"  %>
         <%= image_tag avatar_url %>
       <h1><%= @user.first_name.try(:capitalize) %> <%= @user.last_name.try(:capitalize) %></h1>
-      <h2><%= @user.level.try(:name) %></h2>
+      <h2><%= @user.level.try(:name) %> - <%= @user.stars %></h2>
     </div>
     <div class="tabs">
       <a class="tab active" data-target="#bookings">
