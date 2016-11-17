@@ -1,9 +1,16 @@
+
+
 <p>
   Hi <%= @booking.horse.user.email %>,
-  <%= @booking.user.email %>, wants to book your Horse <%= @booking.horse.name %> on <%= @booking.date %>
+</p>
+<p>
+  <%= @booking.user.email %>, wants to book your Horse <%= @booking.horse.name %> on <%= @booking.date %>.
+</p>
+<p>
   Please confirm <%= link_to 'the booking', booking_url(@booking) %>
 </p>
 
+<%= cl_image_tag @booking.horse.photo.path, style: "height:200px; border-radius:15px" %>
 
 <p>See You Soon !</p>
 
