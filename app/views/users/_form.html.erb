@@ -1,0 +1,8 @@
+<%= simple_form_for @user do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :first_name, placeholder: "First name", error: "Add a name"  %>
+  <%= f.input :last_name, placeholder: "Last name", error: "Add a name"  %>
+  <%= f.association :level %>
+  <%= f.input :description %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
