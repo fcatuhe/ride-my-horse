@@ -1,0 +1,10 @@
+<p>
+  Hi <%= @booking.horse.user.email %>,
+  <%= @booking.user.email %>, wants to book your Horse <%= @booking.horse.name %> on <%= @booking.date %>
+  Please confirm <%= link_to 'the booking', booking_url(@booking) %>
+</p>
+
+
+<p>See You Soon !</p>
+
+<p>The Ride My Horse Team</p>
