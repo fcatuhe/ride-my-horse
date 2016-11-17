@@ -11,12 +11,12 @@
         <object>
           <% if booking.user == current_user && booking.user_rating? %>
             <span class='btn btn-success'><%= booking.stars %><%= " Great experience !" if booking.user_rating > 3 %></span>
-          <% elsif booking.user == current_user && booking.user_rating? %>
-            <%= link_to "Rate your experience", edit_booking_path(booking), class: 'btn btn-primary btn-large' %>
+          <% elsif booking.user == current_user && booking.validated_at? %>
+            <%= link_to "Rate your experience", edit_booking_path(booking), class: 'btn btn-primary' %>
           <% elsif booking.horse.user == current_user && booking.owner_rating? %>
             <span class='btn btn-success'><%= booking.owner_stars %><%= " Great experience !" if booking.owner_rating > 3 %></span>
-          <% elsif booking.horse.user == current_user %>
-            <%= link_to "Rate the rider", edit_booking_path(booking), class: 'btn btn-primary btn-large' %>
+          <% elsif booking.horse.user == current_user && booking.validated_at? %>
+            <%= link_to "Rate the rider", edit_booking_path(booking), class: 'btn btn-primary' %>
           <% end %>
         </object>
       </li>
