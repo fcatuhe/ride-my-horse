@@ -9,7 +9,7 @@
         <% @horses.each do |horse| %>
           <div class="col-xs-12 col-sm-6">
             <div class="results">
-              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(<%= cl_image_path_with_default(horse) %>);">
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(<%= cl_image_path_with_default(horse, height: 300, width: 400, crop: :fill) %>);">
                 <div class="card-category"><%= horse.category.name %><br><%= horse.stars %></div>
                 <div class="card-description">
                   <h2><%= horse.name %></h2>

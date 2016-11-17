@@ -17,4 +17,8 @@ class Horse < ApplicationRecord
     rating = ratings.size > 0 ? ratings.sum.fdiv(ratings.size).round : 0
     ('<i class="fa fa-star" aria-hidden="true"></i>' * rating + '<i class="fa fa-star-o" aria-hidden="true"></i>' * (5 - rating)).html_safe
   end
+
+  def past_bookings_count
+    bookings.where('owner_rating IS NOT NULL').count
+  end
 end

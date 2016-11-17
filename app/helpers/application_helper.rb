@@ -7,19 +7,19 @@ module ApplicationHelper
     end
   end
 
-  def cl_image_path_with_default(horse)
+  def cl_image_path_with_default(horse, options = {})
     if horse.photo?
-      cl_image_path horse.photo.path, height: 300, width: 400, crop: :fill
+      cl_image_path horse.photo.path, options
     else
-      image_path 'ridemyhorse.gif'
+      image_path 'ridemyhorse.gif', options
     end
   end
 
-  def cl_image_tag_with_default(horse)
+  def cl_image_tag_with_default(horse, options = {})
     if horse.photo?
-      cl_image_tag horse.photo.path, height: 300, width: 400, crop: :fill
+      cl_image_tag horse.photo.path, options
     else
-      image_tag 'ridemyhorse.gif'
+      image_tag 'ridemyhorse.gif', options
     end
   end
 
