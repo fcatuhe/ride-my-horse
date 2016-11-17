@@ -13,7 +13,8 @@
               <h2><%= horse.name %></h2>
               <p><%= "#{horse.description.first(50)}..." if horse.description && !horse.description.empty? %></p>
             </div>
-            <!-- <img class="card-user avatar" src="user.jpg"> -->
+            <% avatar_url = horse.user.facebook_picture_url || "http://placehold.it/30x30"  %>
+            <%= image_tag avatar_url, class: 'card-user avatar' %>
             <%= link_to horse.name, horse, class: 'card-link' %>
           </div>
         </div>

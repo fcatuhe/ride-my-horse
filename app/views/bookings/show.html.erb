@@ -26,7 +26,7 @@
       </div>
 
       <div class="col-sm-4">
-        <h3><%= @booking.horse.name %></h3>
+        <h3><%= link_to @booking.horse.name, @booking.horse %></h3>
         <h4><%= @booking.date.strftime('%d %B %Y') %></h4>
         <%= cl_image_tag_with_default(@booking.horse, height: 300, width: 400, crop: :fill, style: 'border-radius: 10px; width: 100%; object-fit: cover;') %>
       </div>

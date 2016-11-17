@@ -1,7 +1,6 @@
 <div class="wrapper form-inline text-center">
   <%= simple_form_for :search, url: horses_path, method: :get do |f| %>
     <%= f.input :address, placeholder: 'Where do you want to ride ?', label: false, input_html: { size: 50 } %>
-    <%= f.input :date, as: :date, label: false %>
     <%= f.button :submit %>
   <% end %>
 </div>
