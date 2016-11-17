@@ -1,12 +1,13 @@
 @import "alert";
 @import "avatars";
 @import "badges";
+@import "buttons";
 @import "banner";
 @import "cards";
 @import "footer";
 @import "media_layout";
+@import "product_item";
 @import "tabs";
-@import "buttons";
 
 .frame {
   background-color: $light-grey;
