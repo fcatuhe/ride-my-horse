@@ -29,6 +29,11 @@ class HorsesController < ApplicationController
     @booking = @horse.bookings.new
     @horse_coordinates = {lat: @horse.latitude, lng: @horse.longitude}
     @alert_message = "You are viewing #{@horse.name}"
+    @hash = Gmaps4rails.build_markers(@horse) do |horse, marker|
+      marker.lat horse.latitude
+      marker.lng horse.longitude
+    end
+
   end
 
   def new
