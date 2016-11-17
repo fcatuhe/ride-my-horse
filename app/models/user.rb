@@ -37,13 +37,13 @@ class User < ApplicationRecord
   end
 
   def stars
-    ratings = bookings.map { |booking| booking.user_rating}.select { |user_rating| !user_rating.nil? }
+    ratings = bookings.map { |booking| booking.owner_rating}.select { |owner_rating| !owner_rating.nil? }
     rating = ratings.size > 0 ? ratings.sum.fdiv(ratings.size).round : 0
     ('<i class="fa fa-star" aria-hidden="true"></i>' * rating + '<i class="fa fa-star-o" aria-hidden="true"></i>' * (5 - rating)).html_safe
   end
 
   def past_bookings_count
-    bookings.where('user_rating IS NOT NULL').count
+    bookings.where('owner_rating IS NOT NULL').count
   end
 
   private

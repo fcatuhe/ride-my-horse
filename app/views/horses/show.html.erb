@@ -8,6 +8,9 @@
 
     <div class="media-section">
       <h1><%= @horse.name %></h1>
+      <% avatar_url = @horse.user.facebook_picture_url || "http://placehold.it/30x30"  %>
+      <%= image_tag avatar_url, class: 'avatar' %>
+      <div class="media-user"><%= @horse.user&.first_name %> <%= @horse.user&.last_name.try(:[], 0) %></div>
     </div>
 
     <div class="media-section">
@@ -16,7 +19,7 @@
       <br>
       <ul class="list-group">
         <li class="list-group-item">Category: <%= @horse.category.name %></li>
-        <li class="list-group-item">Equiped: <%= @horse.equipment %></li>
+        <li class="list-group-item">Equiped: <%= @horse.equipment? %></li>
       </ul>
     </div>
 
