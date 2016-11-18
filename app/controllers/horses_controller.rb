@@ -22,6 +22,10 @@ class HorsesController < ApplicationController
       marker.lng horse.longitude
     end
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
