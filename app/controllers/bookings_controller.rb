@@ -24,9 +24,15 @@ class BookingsController < ApplicationController
   def update
     @booking.update(booking_params)
     if @booking.save
-      redirect_to current_user
+      respond_to do |format|
+        format.html { redirect_to current_user }
+        format.js  # <-- will render `app/views/bookings/update.js.erb`
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.js  # <-- will render `app/views/bookings/update.js.erb`
+      end
     end
   end
 
