@@ -1,4 +1,4 @@
-<%= simple_form_for booking do |f| %>
+<%= simple_form_for booking, remote: true do |f| %>
   <% if booking.user == current_user %>
     <%= f.input :user_rating, collection: 0..5, as: :radio_buttons %>
     <%= f.input :user_comment %>

@@ -24,9 +24,9 @@ class HorsesController < ApplicationController
       marker.lng horse.longitude
       marker.infowindow render_to_string(partial: "horses/card_horse_address", locals: { horse: horse })
       marker.picture({
-        "url" => view_context.image_path('home/horseriding.png'),
-        "width" => 128,
-        "height" => 128
+        "url" => view_context.image_path('home/horse-marker.png'),
+        "width" => 32,
+        "height" => 37
       })
       # marker.infowindow 'Hello!'
     end
