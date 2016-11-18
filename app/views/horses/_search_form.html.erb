@@ -1,5 +1,5 @@
 <%= simple_form_for :search, url: horses_path, method: :get do |f| %>
-  <%= f.input :address, placeholder: 'Where do you want to ride ?', label: false, input_html: { value: @address } %>
-  <%= f.input :date, as: :date, label: false, input_html: { value: @date } %>
+  <%= f.input :address, placeholder: 'Where do you want to ride ?', label: false, input_html: { value: address } %>
+  <%= f.input :date, as: :date, label: false, selected: date %>
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>
