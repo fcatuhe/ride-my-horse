@@ -3,6 +3,6 @@
   $('#well').html("<%= j render 'form', user: @user %>");
 <% else %>
   $('#well').html("<%= j render 'form', user: @user %>");
-  $('#collapseProfile').toggleClass('in')
-  $('#my-profile').html("<%= j render 'user', user: @user %>")
+  $('#collapseProfile').collapse('hide');
+  $('#my-profile').html("<%= j render 'user', user: @user %>");
 <% end %>

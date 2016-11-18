@@ -24,9 +24,7 @@
     </div>
 
      <div class="media-section">
-      <% if @horse.photo? %>
-        <%= cl_image_tag @horse.photo.path, width: 500, crop: :fill %>
-      <% end %>
+      <%= cl_image_tag_with_default @horse, width: 500, crop: :fill %>
     </div>
 
   </div>
