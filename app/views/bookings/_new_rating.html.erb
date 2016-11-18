@@ -1,0 +1,11 @@
+<%= simple_form_for booking do |f| %>
+  <% if booking.user == current_user %>
+    <%= f.input :user_rating, collection: 0..5, as: :radio_buttons %>
+    <%= f.input :user_comment %>
+  <% end %>
+  <% if booking.horse.user == current_user %>
+    <%= f.input :owner_rating, collection: 0..5, as: :radio_buttons %>
+    <%= f.input :owner_comment %>
+  <% end %>
+    <%= f.submit class: 'btn btn-primary' %>
+<% end %>

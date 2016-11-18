@@ -1,0 +1,20 @@
+<% if booking.user == current_user && booking.user_rating.present? %>
+  <span class='btn btn-success'><%= booking.stars %><%= " Great experience !" if booking.user_rating > 3 %></span>
+
+<% elsif booking.user == current_user && booking.validated_at? %>
+  <!-- Button trigger modal -->
+  <a href="#" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#<%= booking.id %>">
+    Rate your experience
+  </a>
+
+<% elsif booking.horse.user == current_user && booking.owner_rating.present? %>
+  <span class='btn btn-success'><%= booking.owner_stars %><%= " Great experience !" if booking.owner_rating > 3 %></span>
+
+<% elsif booking.horse.user == current_user && booking.validated_at? %>
+
+  <!-- Button trigger modal -->
+  <a href="#" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#<%= booking.id %>">
+    Rate the rider
+  </a>
+
+<% end %>
