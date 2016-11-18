@@ -34,17 +34,20 @@ h3 {
 }
 
 .wrapper {
-  background-color: $brand-color;
+ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 30px;
+
 }
 
 .content {
-  background-color: $light-grey;
+  background-color: white;
   height: 400px;
   margin: 25px 0;
+  border-shadow: 2px 2px 2px $light-grey;
 }
 
 .steps {

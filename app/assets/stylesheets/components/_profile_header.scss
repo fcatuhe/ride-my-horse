@@ -1,18 +1,18 @@
 .profile-header-wrapper {
-  background: $green;
+  background: $light-grey;
 }
 .profile-header-container img {
   width: 100px;
   border-radius: 50%;
 }
 .profile-header-container h1 {
-  color: white;
+  color: $brand-color;
   font-size: 28px;
   font-weight: bold;
   letter-spacing: -1px;
 }
 .profile-header-container h2 {
-  color: white;
+  color: $brand-color;
   opacity: 0.4;
   font-size: 18px;
   font-weight: lighter;
