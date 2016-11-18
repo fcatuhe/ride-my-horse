@@ -20,7 +20,7 @@ class HorsesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
       marker.lat horse.latitude
       marker.lng horse.longitude
-      marker.infowindow render_to_string(partial: "shared/card_horse_address", locals: { horse: horse })
+      marker.infowindow render_to_string(partial: "horses/card_horse_address", locals: { horse: horse })
     end
 
   end
