@@ -16,6 +16,8 @@ class HorsesController < ApplicationController
       @date = Date.new(search["date(1i)"].to_i, search["date(2i)"].to_i, search["date(3i)"].to_i)
       @horses = @horses.joins(:availabilities).where('start_at <= ?', @date).where('finish_at >= ?', @date)
     end
+
+    @date ||= Date.today
     # image = image_path 'home/horseriding.png'
     @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
       marker.lat horse.latitude
