@@ -9,7 +9,7 @@
 
       <li>
         <object>
-          <% if booking.user == current_user && booking.user_rating? %>
+          <% if booking.user == current_user && booking.user_rating.present? %>
             <span class='btn btn-success'><%= booking.stars %><%= " Great experience !" if booking.user_rating > 3 %></span>
 
           <% elsif booking.user == current_user && booking.validated_at? %>
@@ -18,7 +18,7 @@
               Rate your experience
             </button>
 
-          <% elsif booking.horse.user == current_user && booking.owner_rating? %>
+          <% elsif booking.horse.user == current_user && booking.owner_rating.present? %>
             <span class='btn btn-success'><%= booking.owner_stars %><%= " Great experience !" if booking.owner_rating > 3 %></span>
 
           <% elsif booking.horse.user == current_user && booking.validated_at? %>

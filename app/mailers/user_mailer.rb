@@ -16,7 +16,9 @@ class UserMailer < ApplicationMailer
   end
 
   def booking_confirmed(booking)
-    @booking = booking
-    mail(to: @booking.user.email, subject: 'Your booking has been confirmed by ' + @booking.horse.user.email )
+    if booking.owner_rating == nil && booking.owner_comment == nil && booking.user_comment == nil && booking.user_rating ==nil
+      @booking = booking
+      mail(to: @booking.user.email, subject: 'Your booking has been confirmed by ' + @booking.horse.user.email )
+    end
   end
 end
