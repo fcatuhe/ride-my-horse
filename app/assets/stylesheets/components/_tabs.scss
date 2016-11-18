@@ -1,5 +1,5 @@
 .tabs {
-  background: $green;
+  background: $light-grey;
   display: flex;
   padding: 10px 100px 0 100px;
 }
@@ -21,7 +21,7 @@
   margin-bottom: 0;
 }
 .tab {
-  background: $green-darker;
+  background: $middle-grey;
   color: white !important;
   flex: 1 1 auto;
   text-align: center;
