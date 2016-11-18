@@ -1,4 +1,4 @@
-<%= simple_form_for @user do |f| %>
+<%= simple_form_for user, remote: true do |f| %>
   <%= f.error_notification %>
   <%= f.input :first_name, placeholder: "First name", error: "Add a name"  %>
   <%= f.input :last_name, placeholder: "Last name", error: "Add a name"  %>
