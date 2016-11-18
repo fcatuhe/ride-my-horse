@@ -38,7 +38,7 @@
         <%= image_tag owner_avatar_url, class: 'avatar-xl' %>
         <h3><%= @booking.horse.user.first_name %> <%= @booking.horse.user.last_name %></h3>
         <p><%= @booking.horse.user.level.try(:name) %></p>
-        <p>Last seen on <%= @booking.horse.user.last_sign_in_at.strftime('%d %B %Y') %></p>
+        <p>Last seen on <%= @booking.horse.user.last_sign_in_at&.strftime('%d %B %Y') %></p>
         <p><small><%= @booking.horse.try(:address) %></small></p>
         <p><%= @booking.horse.user&.description %></p>
 
