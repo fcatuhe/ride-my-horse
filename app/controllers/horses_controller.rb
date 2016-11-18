@@ -20,6 +20,7 @@ class HorsesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
       marker.lat horse.latitude
       marker.lng horse.longitude
+      marker.infowindow render_to_string(partial: "horses/card_horse_address", locals: { horse: horse })
       marker.picture({
         "url" => view_context.image_path('home/horseriding.png'),
         "width" => 128,

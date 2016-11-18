@@ -1,0 +1,21 @@
+
+</div>
+<div class="card_horse_address">
+
+  <div class="map-box-horse-content">
+    <div style="width: 200px">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url(<%= cl_image_path_with_default(horse, height: 300, width: 400, crop: :fill) %>);">
+        <div class="card-category"><%= horse.category.name %><br><%= horse.stars %></div>
+        <div class="card-description">
+          <h2><%= horse.name %></h2>
+          <p><%= "#{horse.description.first(50)}..." if horse.try(:description) %></p>
+        </div>
+        <% avatar_url = horse.user.facebook_picture_url || "http://placehold.it/30x30"  %>
+        <%= image_tag avatar_url, class: 'card-user avatar' %>
+        <%= link_to horse.name, horse, class: 'card-link' %>
+      </div>
+
+
+    </div>
+  </div>
+</div>
