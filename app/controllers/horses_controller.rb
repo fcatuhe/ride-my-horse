@@ -16,13 +16,23 @@ class HorsesController < ApplicationController
       @date = Date.new(search["date(1i)"].to_i, search["date(2i)"].to_i, search["date(3i)"].to_i)
       @horses = @horses.joins(:availabilities).where('start_at <= ?', @date).where('finish_at >= ?', @date)
     end
-
+    # image = image_path 'home/horseriding.png'
     @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
       marker.lat horse.latitude
       marker.lng horse.longitude
       marker.infowindow render_to_string(partial: "horses/card_horse_address", locals: { horse: horse })
+      marker.picture({
+        "url" => view_context.image_path('home/horseriding.png'),
+        "width" => 128,
+        "height" => 128
+      })
+      # marker.infowindow 'Hello!'
     end
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

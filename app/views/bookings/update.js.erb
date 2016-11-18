@@ -1,0 +1,6 @@
+<% if @booking.errors.any? %>
+  // Render new review form with errors
+  $('#new_rating').html("<%= j render 'bookings/new_rating', booking: booking %>");
+<% else %>
+  $("#rate_<%= booking.id %>").html("<%= j render 'bookings/rate', booking: @booking %>");
+<% end %>

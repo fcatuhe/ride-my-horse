@@ -1,0 +1,8 @@
+<% if @user.errors.any? %>
+  // Render new review form with errors
+  $('#well').html("<%= j render 'form', user: @user %>");
+<% else %>
+  $('#well').html("<%= j render 'form', user: @user %>");
+  $('#collapseProfile').toggleClass('in')
+  $('#my-profile').html("<%= j render 'user', user: @user %>")
+<% end %>
