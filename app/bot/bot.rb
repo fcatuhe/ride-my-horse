@@ -34,13 +34,13 @@ Bot.on :message do |message|
     elements = @horses.map do |horse|
       {
         title: horse.name,
-        image_url: 'https://www.scienceabc.com/wp-content/uploads/2016/05/horse-running.jpg',
+        image_url: 'https://www.scienceabc.com/wp-content/uploads/2016/05/horse-running.jpg', # helpers.image_path('logo.jpg'),
         subtitle: horse.description,
         buttons: [
           {
             type: 'postback',
-            title: 'Show me this cute horse!',
-            payload: "horse_1"
+            title: 'Pricey horse?',
+            payload: "HORSE_#{horse.id}"
           }
         ]
       }
@@ -54,17 +54,12 @@ Bot.on :message do |message|
         }
       }
     )
-  when /horse/i
+  when /near/i
     message.reply(
-      text: 'You want to see the horses?',
+      text: 'Where are you?',
       quick_replies: [
         {
-          content_type: 'text',
-          title: 'Yes indeed!',
-          payload: 'HORSES'
-        },
-        {
-          content_type: 'location',
+          content_type: 'location'
         }
       ]
     )
@@ -107,13 +102,21 @@ Bot.on :message do |message|
       }
     )
   else
-    message.reply(
-      text: 'You are now marked for extermination.'
-    )
-
-    message.reply(
-      text: 'Have a nice day.'
-    )
+    if message.attachments.try(:[], 0).try(:[], 'payload').try(:[], 'coordinates')
+      lat = message.attachments[0]['payload']['coordinates']['lat']
+      lng = message.attachments[0]['payload']['coordinates']['long']
+      message.reply(
+        text: "Your coordinates: #{lat}, #{lng}"
+      )
+    elsif message.text
+      message.reply(
+        text: "Did you say '#{message.text}'?"
+      )
+    else
+      message.reply(
+        text: "Did not understand"
+      )
+    end
   end
 end
 
@@ -123,9 +126,13 @@ Bot.on :postback do |postback|
     text = 'That makes bot happy!'
   when 'HUMAN_DISLIKED'
     text = 'Oh.'
-  when "horse_1"
-    horse = Horse.find(1)
-    text = "Daily price: #{horse.price} €"
+  when /HORSE_(?<id>\d+)/
+    horse = Horse.find($LAST_MATCH_INFO['id'])
+    text = "#{horse.name} daily price: #{horse.price} €"
+  when /coordinates/
+    lat = postback.payload.coordinates.lat
+    lng = postback.payload.coordinates.long
+    text = "Your coordinates: #{lat}, #{lng}"
   end
 
   postback.reply(
