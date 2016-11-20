@@ -12,9 +12,10 @@ gem 'cloudinary'
 gem "attachinary", github: "assembler/attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
-gem 'redis'
 gem "geocoder"
 gem "gmaps4rails"
+gem "facebook-messenger"
+gem 'redis'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
